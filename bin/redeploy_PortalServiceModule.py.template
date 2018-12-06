@@ -1,0 +1,31 @@
+# This script must be executed within directory where base.py 
+# is found. Otherwise sys.path.append("/path/to/base") must be 
+# added before following line
+from base import *
+
+# ---------------------------------------------------------------------
+# Environment specific definitions
+# ---------------------------------------------------------------------
+appName="PortalServiceModuleApp"
+appPack="@ESB_APP_PACK_DIR@/PortalServiceModuleApp.ear"
+httpBindings=['[-moduleName PortalServiceModule -import Core -endpointURL <Core>@ESB_COMP_ENDPOINT_BASE_CORE@/SoapHandler</Core>]',
+              '[-moduleName PortalServiceModule -import Core -endpointURL <callCore>@ESB_COMP_ENDPOINT_BASE_CORE@/SoapHandler</callCore>]']
+wsBindings=['[-moduleName PortalServiceModule -import Announcement -endpoint @ESB_COMP_ENDPOINT_BASE_ANNOUNCEMENT@/announcement]',
+            '[-moduleName PortalServiceModule -import Security -endpoint @ESB_COMP_ENDPOINT_BASE_SECURITY@/security]']
+
+# Servers the application is deployed on
+server1='@ESB_SERVER_1@'
+server2='@ESB_SERVER_2@'
+if server2 == '':
+  servers=[server1]
+else:
+  servers=[server1, server2]
+
+
+
+# ---------------------------------------------------------------------
+# (The script starts from here)
+#
+# Environment agnostic operations
+# ---------------------------------------------------------------------
+redeployApp(appName, appPack, httpBindings, wsBindings, servers)

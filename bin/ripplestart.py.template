@@ -1,0 +1,17 @@
+# This script must be executed within directory where base.py 
+# is found. Otherwise sys.path.append("/path/to/base") must be 
+# added before following line
+from base import *
+
+# ---------------------------------------------------------------------
+# Environment specific definitions
+# ---------------------------------------------------------------------
+cluster="@ESB_CLUSTER@"
+
+
+# ---------------------------------------------------------------------
+# (The script starts from here)
+#
+# Environment agnostic operations
+# ---------------------------------------------------------------------
+rippleStart(cluster)

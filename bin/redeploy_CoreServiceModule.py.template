@@ -1,0 +1,33 @@
+# This script must be executed within directory where base.py 
+# is found. Otherwise sys.path.append("/path/to/base") must be 
+# added before following line
+from base import *
+
+# ---------------------------------------------------------------------
+# Environment specific definitions
+# ---------------------------------------------------------------------
+appName="CoreServiceModuleApp"
+appPack="@ESB_APP_PACK_DIR@/CoreServiceModuleApp.ear"
+httpBindings=['[-moduleName CoreServiceModule -import Core -endpointURL <Core>@ESB_COMP_ENDPOINT_BASE_CORE@/SoapHandler</Core>]',
+              '[-moduleName CoreServiceModule -import Core -endpointURL <callCore>@ESB_COMP_ENDPOINT_BASE_CORE@/SoapHandler</callCore>]',
+              '[-moduleName CoreServiceModule -import Dp -endpointURL <DataPower>@ESB_COMP_ENDPOINT_BASE_DP@</DataPower>]',
+              '[-moduleName CoreServiceModule -import Dp -endpointURL <callDpAmountDecreaseType>@ESB_COMP_ENDPOINT_BASE_DP@/AmountDecrease</callDpAmountDecreaseType>]',
+              '[-moduleName CoreServiceModule -import Dp -endpointURL <callDpAmountIncreaseType>@ESB_COMP_ENDPOINT_BASE_DP@/AmountIncrease</callDpAmountIncreaseType>]',
+              '[-moduleName CoreServiceModule -import Dp -endpointURL <callDpIssuerType>@ESB_COMP_ENDPOINT_BASE_DP@/Issuer</callDpIssuerType>]']
+wsBindings=['[-moduleName CoreServiceModule -import DpWS -endpoint @ESB_COMP_ENDPOINT_BASE_DP_WS@/sso]']
+
+# Servers the application is deployed on
+server1='@ESB_SERVER_1@'
+server2='@ESB_SERVER_2@'
+if server2 == '':
+  servers=[server1]
+else:
+  servers=[server1, server2]
+
+
+# ---------------------------------------------------------------------
+# (The script starts from here)
+#
+# Environment agnostic operations
+# ---------------------------------------------------------------------
+redeployApp(appName, appPack, httpBindings, wsBindings, servers)

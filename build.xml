@@ -1,0 +1,33 @@
+<project name="generator" default="GenerateScripts" basedir=".">
+  
+  <!-- 
+    Generates management scripts of given environment.
+    Generated Jython scripts can be executed by ESB's wsadmin console.
+  -->
+  <target name="GenerateScripts">
+    <fail unless="env">'env' is missing. Please pass 'test' or 'prod'. 
+      For example use 'ant -Denv=test'</fail>
+
+    <echo>Environment: ${env}</echo>
+
+    <copy toDir="dist/${env}" overwrite="true">
+      <fileset dir="bin">
+        <include name="**/*.template"/>
+      </fileset>
+      <!-- Removes extension(.template) and adds ${env} to file name -->
+      <mapper type="regexp" from="^(.*)\.(.*)$$" to="\1" />
+      <!-- Replaces tokens -->
+      <filterset>
+        <filtersfile file="properties/${env}.properties"/>
+      </filterset>
+    </copy>
+
+    <copy toDir="dist/${env}" overwrite="true">
+      <fileset dir="bin">
+        <include name="**/*.py"/>
+      </fileset>
+    </copy>
+
+  </target>
+ 
+</project>
