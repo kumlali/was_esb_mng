@@ -10,8 +10,8 @@ appName="PortalServiceModuleApp"
 appPack="@ESB_APP_PACK_DIR@/PortalServiceModuleApp.ear"
 httpBindings=['[-moduleName PortalServiceModule -import Core -endpointURL <Core>@ESB_COMP_ENDPOINT_BASE_CORE@/SoapHandler</Core>]',
               '[-moduleName PortalServiceModule -import Core -endpointURL <callCore>@ESB_COMP_ENDPOINT_BASE_CORE@/SoapHandler</callCore>]']
-wsBindings=['[-moduleName PortalServiceModule -import Announcement -endpoint @ESB_COMP_ENDPOINT_BASE_ANNOUNCEMENT@/announcement]',
-            '[-moduleName PortalServiceModule -import Security -endpoint @ESB_COMP_ENDPOINT_BASE_SECURITY@/security]']
+wsBindings=['[-moduleName PortalServiceModule -import AnnouncementWS -endpoint @ESB_COMP_ENDPOINT_BASE_PORTAL@/ws/announcement]',
+            '[-moduleName PortalServiceModule -import SecurityWS -endpoint @ESB_COMP_ENDPOINT_BASE_PORTAL@/ws/security]']
 
 # Servers the application is deployed on
 server1='@ESB_SERVER_1@'

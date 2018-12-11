@@ -14,7 +14,7 @@ httpBindings=['[-moduleName CoreServiceModule -import Core -endpointURL <Core>@E
               '[-moduleName CoreServiceModule -import Dp -endpointURL <callDpAmountDecreaseType>@ESB_COMP_ENDPOINT_BASE_DP@/AmountDecrease</callDpAmountDecreaseType>]',
               '[-moduleName CoreServiceModule -import Dp -endpointURL <callDpAmountIncreaseType>@ESB_COMP_ENDPOINT_BASE_DP@/AmountIncrease</callDpAmountIncreaseType>]',
               '[-moduleName CoreServiceModule -import Dp -endpointURL <callDpIssuerType>@ESB_COMP_ENDPOINT_BASE_DP@/Issuer</callDpIssuerType>]']
-wsBindings=['[-moduleName CoreServiceModule -import DpWS -endpoint @ESB_COMP_ENDPOINT_BASE_DP_WS@/sso]']
+wsBindings=['[-moduleName CoreServiceModule -import SsoWS -endpoint @ESB_COMP_ENDPOINT_BASE_SSO@/ws/sso]']
 
 # Servers the application is deployed on
 server1='@ESB_SERVER_1@'
